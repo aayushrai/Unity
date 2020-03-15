@@ -11,9 +11,23 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    public float speed = 5.0f;
+
+    // private variable
+    private float speed = 35.0f;
+    private float turnSpeed = 35.0f;
+    private float Horizontal;
+    private float Vertical;
+
     void Update()
-    {
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    {   
+        // Inputs
+        Horizontal = Input.GetAxis("Horizontal");
+        Vertical = Input.GetAxis("Vertical");
+
+        // Forward and Backward control
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * Vertical);
+
+        // Turn right and left
+        transform.Rotate(Vector3.up ,Time.deltaTime * turnSpeed * Horizontal);
     }
 }
